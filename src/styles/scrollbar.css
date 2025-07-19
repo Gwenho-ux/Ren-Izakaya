@@ -1,0 +1,41 @@
+/* Custom Red Scrollbar - Force Always Visible */
+.custom-scrollbar {
+  overflow-y: scroll !important;
+  scrollbar-width: thin !important;
+  scrollbar-color: #FF3E3C #000000 !important;
+  scrollbar-gutter: stable !important;
+}
+
+/* Force scrollbar to always be visible - override browser defaults */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 12px !important;
+  background: #000000 !important;
+  border-radius: 6px !important;
+  -webkit-appearance: none !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #000000 !important;
+  border-radius: 6px !important;
+  -webkit-appearance: none !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #FF3E3C !important;
+  border-radius: 6px !important;
+  min-height: 50px !important;
+  -webkit-appearance: none !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #FF5652 !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:active {
+  background: #FF2A28 !important;
+}
+
+/* Force scrollbar corner to be visible */
+.custom-scrollbar::-webkit-scrollbar-corner {
+  background: #000000 !important;
+} 
