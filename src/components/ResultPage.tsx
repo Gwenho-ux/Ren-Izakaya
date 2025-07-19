@@ -56,14 +56,13 @@ export const ResultPage = ({ aiResponse }: ResultPageProps) => {
 
   const handleShareFate = () => {
     // Create Twitter share content
-    const tweetText = `Just discovered my fate at the Izakaya Between Worlds! 🍜✨
+    const tweetText = `I just asked Ren the Recipe Oracle my question and he cooked up this wild dish 🍜
 
 My dish: ${selectedFood.name}
-${selectedFood.description}
 
-Ren's wisdom: "${aiResponse}"
+Try it out: https://ren-izakaya.vercel.app/ 
 
-#IzakayaBetweenWorlds #Fate #DigitalFortune`;
+Built with AI by @Gwendeei`;
 
     // Encode the tweet text for URL
     const encodedTweet = encodeURIComponent(tweetText);
