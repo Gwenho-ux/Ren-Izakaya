@@ -24,10 +24,10 @@ export const ResultPage = ({ aiResponse }: ResultPageProps) => {
   const [isBreakCycleModalOpen, setIsBreakCycleModalOpen] = useState(false);
   const { withSoundEffects } = useSoundEffects();
   const { playLayeredSound } = useSimpleSoundContext();
-  
+
   // Get user's original question
   const userQuestion = searchParams.get('input') || '';
-  
+
   // Select a random food when component mounts
   const [selectedFood] = useState<Food>(() => {
     const randomIndex = Math.floor(Math.random() * foods.length);
@@ -64,13 +64,13 @@ ${selectedFood.description}
 Ren's wisdom: "${aiResponse}"
 
 #IzakayaBetweenWorlds #Fate #DigitalFortune`;
-    
+
     // Encode the tweet text for URL
     const encodedTweet = encodeURIComponent(tweetText);
-    
+
     // Create Twitter share URL
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodedTweet}`;
-    
+
     // Open Twitter in a new window
     window.open(twitterUrl, '_blank', 'width=550,height=420');
   };
@@ -86,7 +86,7 @@ Ren's wisdom: "${aiResponse}"
       <div className="fixed inset-0 flex items-center justify-center">
         <div className="text-white text-center">
           <p>Something went wrong. Please try again.</p>
-          <button 
+          <button
             {...reloadButtonProps}
             className="nav-button mt-4"
           >
@@ -133,7 +133,7 @@ Ren's wisdom: "${aiResponse}"
 
         {/* Ask Again Button - Text button (Both mobile and desktop) */}
         <div className="fixed top-[2vh] right-[3vw] z-30">
-          <button 
+          <button
             {...withSoundEffects(() => router.push('/wonders'))}
             className="header-link text-shadow-xl text-bg-dark inline-block w-auto text-center"
             style={{
@@ -157,8 +157,8 @@ Ren's wisdom: "${aiResponse}"
         {/* Mobile Layout (< 830px) */}
         <div className="max-[830px]:flex hidden flex-col h-screen relative z-20" style={{ paddingTop: 'calc(2vh + 64px + 12px)', paddingBottom: '24px', paddingLeft: '3vw', paddingRight: '3vw' }}>
           {/* Main Content Container */}
-          <div className="flex-1 overflow-y-auto" style={{ 
-            backgroundColor: 'rgba(0, 0, 0, 0.8)', 
+          <div className="flex-1 overflow-y-auto" style={{
+            backgroundColor: 'rgba(0, 0, 0, 0.8)',
             backdropFilter: 'blur(10px)',
             borderRadius: '20px',
             padding: '20px'
@@ -166,7 +166,7 @@ Ren's wisdom: "${aiResponse}"
             {/* User's Question */}
             {userQuestion && (
               <div style={{ marginBottom: '12px' }}>
-                <p style={{ 
+                <p style={{
                   color: 'rgba(255, 255, 255, 0.7)',
                   fontFamily: 'PT Mono',
                   fontSize: 'clamp(12px, 4vw, 16px)',
@@ -182,13 +182,13 @@ Ren's wisdom: "${aiResponse}"
 
             {/* Ren's Answer */}
             <div style={{ marginBottom: '12px' }}>
-              <h2 className="text-[#FF3E3C] font-semibold font-pt-mono mb-2" style={{ 
+              <h2 className="text-[#FF3E3C] font-semibold font-pt-mono mb-2" style={{
                 fontSize: 'clamp(12px, 4vw, 16px)',
                 textAlign: 'left'
               }}>
                 Ren&apos;s Answer
               </h2>
-              <p style={{ 
+              <p style={{
                 color: '#FFF',
                 fontFamily: 'PT Mono',
                 fontSize: 'clamp(12px, 4vw, 16px)',
@@ -214,12 +214,12 @@ Ren's wisdom: "${aiResponse}"
             {/* Food Details */}
             <div style={{ marginBottom: '12px' }}>
               {/* Food Image */}
-              <div style={{ 
-                display: 'flex', 
-                justifyContent: 'center', 
-                marginBottom: '16px' 
+              <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                marginBottom: '16px'
               }}>
-                <Image 
+                <Image
                   src={`/images/${selectedFood.id}.png`}
                   alt={selectedFood.name}
                   width={300}
@@ -230,14 +230,14 @@ Ren's wisdom: "${aiResponse}"
                   }}
                 />
               </div>
-              <h2 className="text-[#FF3E3C] font-semibold font-pt-mono" style={{ 
+              <h2 className="text-[#FF3E3C] font-semibold font-pt-mono" style={{
                 fontSize: 'clamp(12px, 4vw, 16px)',
                 textAlign: 'left',
                 marginBottom: '12px'
               }}>
                 {selectedFood.type}
               </h2>
-              <h1 className="text-white font-['Public Sans'] font-black" style={{ 
+              <h1 className="text-white font-['Public Sans'] font-black" style={{
                 fontSize: '24px',
                 lineHeight: '1.2',
                 textAlign: 'left',
@@ -245,7 +245,7 @@ Ren's wisdom: "${aiResponse}"
               }}>
                 {selectedFood.name}
               </h1>
-              <p style={{ 
+              <p style={{
                 color: '#FFF',
                 fontFamily: 'PT Mono',
                 fontSize: 'clamp(12px, 4vw, 16px)',
@@ -261,7 +261,7 @@ Ren's wisdom: "${aiResponse}"
 
             {/* Attributes */}
             <div style={{ marginBottom: '12px' }}>
-              <h2 className="text-[#FF3E3C] font-semibold font-pt-mono mb-2" style={{ 
+              <h2 className="text-[#FF3E3C] font-semibold font-pt-mono mb-2" style={{
                 fontSize: 'clamp(12px, 4vw, 16px)',
                 textAlign: 'left'
               }}>
@@ -276,29 +276,29 @@ Ren's wisdom: "${aiResponse}"
           </div>
 
           {/* Action Buttons for Mobile */}
-          <div style={{ 
-            marginTop: '30px', 
-            display: 'flex', 
-            flexDirection: 'row', 
-            gap: '8px', 
+          <div style={{
+            marginTop: '30px',
+            display: 'flex',
+            flexDirection: 'row',
+            gap: '8px',
             alignItems: 'stretch',
             paddingRight: '4px'
           }}>
             <div style={{ fontSize: '11px', flex: 1, minWidth: 0 }}>
-              <NeonButton 
-                {...breakCycleButtonProps} 
+              <NeonButton
+                {...breakCycleButtonProps}
                 className="w-full text-center flex items-center justify-center text-xs"
               >
                 Break Your Cycle
               </NeonButton>
             </div>
             <div style={{ flexShrink: 0 }}>
-              <NeonButton 
-                {...shareFateButtonProps} 
+              <NeonButton
+                {...shareFateButtonProps}
                 variant="square"
               >
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M11.025 0.655762H13.172L8.482 6.02976L14 13.3438H9.68L6.294 8.90876L2.424 13.3438H0.275L5.291 7.59376L0 0.656762H4.43L7.486 4.70976L11.025 0.655762ZM10.27 12.0558H11.46L3.78 1.87676H2.504L10.27 12.0558Z" fill="currentColor"/>
+                  <path d="M11.025 0.655762H13.172L8.482 6.02976L14 13.3438H9.68L6.294 8.90876L2.424 13.3438H0.275L5.291 7.59376L0 0.656762H4.43L7.486 4.70976L11.025 0.655762ZM10.27 12.0558H11.46L3.78 1.87676H2.504L10.27 12.0558Z" fill="currentColor" />
                 </svg>
               </NeonButton>
             </div>
@@ -308,7 +308,7 @@ Ren's wisdom: "${aiResponse}"
         {/* Desktop Layout (>= 830px) */}
         <div className="min-[830px]:block hidden">
           {/* Scrollable Content Container */}
-          <div style={{ 
+          <div style={{
             position: 'fixed',
             top: 'calc(2vh + 64px)',
             right: '3vw',
@@ -318,7 +318,7 @@ Ren's wisdom: "${aiResponse}"
             display: 'flex',
             justifyContent: 'flex-end'
           }}>
-            <div 
+            <div
               className="w-full overflow-y-auto"
               style={{
                 display: 'flex',
@@ -332,7 +332,7 @@ Ren's wisdom: "${aiResponse}"
               }}
             >
               {/* Blurred edge background */}
-              <div 
+              <div
                 style={{
                   position: 'absolute',
                   top: 0,
@@ -355,9 +355,9 @@ Ren's wisdom: "${aiResponse}"
                   WebkitMaskComposite: 'source-in'
                 }}
               />
-              
+
               {/* Additional soft edge blur */}
-              <div 
+              <div
                 style={{
                   position: 'absolute',
                   top: '-20px',
@@ -370,15 +370,15 @@ Ren's wisdom: "${aiResponse}"
                   zIndex: -2
                 }}
               />
-              
+
               {/* 1. User's Question Section */}
               {userQuestion && (
                 <div className="w-full flex flex-col gap-[0px]" style={{ marginTop: '8px', marginBottom: '8px' }}>
                   <div className="relative">
                     <div className="absolute inset-0 bg-black/70 blur-[46.7px]" style={{ borderRadius: '20px' }} />
                     <div className="relative w-full flex flex-col gap-[0px] bg-black/60 backdrop-blur-sm p-3" style={{ borderRadius: '20px' }}>
-                      <p className="text-right" style={{ 
-                        marginTop: '6px', 
+                      <p className="text-right" style={{
+                        marginTop: '6px',
                         marginBottom: '6px',
                         color: 'rgba(255, 255, 255, 0.7)',
                         fontFamily: 'PT Mono',
@@ -403,8 +403,8 @@ Ren's wisdom: "${aiResponse}"
                     <h2 className="text-[#FF3E3C] text-sm md:text-base font-semibold font-pt-mono text-right" style={{ marginTop: '6px', marginBottom: '6px' }}>
                       Ren&apos;s Answer
                     </h2>
-                    <p className="text-right" style={{ 
-                      marginTop: '6px', 
+                    <p className="text-right" style={{
+                      marginTop: '6px',
                       marginBottom: '6px',
                       color: '#FFF',
                       fontFamily: 'PT Mono',
@@ -416,8 +416,8 @@ Ren's wisdom: "${aiResponse}"
                     }}>
                       &quot;{aiResponse}&quot;
                     </p>
-                    <p className="text-right italic" style={{ 
-                      marginTop: '4px', 
+                    <p className="text-right italic" style={{
+                      marginTop: '4px',
                       marginBottom: '6px',
                       color: '#FFF',
                       fontFamily: 'PT Mono',
@@ -459,19 +459,19 @@ Ren's wisdom: "${aiResponse}"
                 <h1 className="text-white font-['Public Sans'] text-[32px] md:text-[40px] font-black leading-[34px] md:leading-[42px] tracking-[2.5px] md:tracking-[3.5px] bg-transparent text-right" style={{ marginTop: '6px', marginBottom: '6px' }}>
                   {selectedFood.name}
                 </h1>
-                  <p className="text-right" style={{ 
-                    marginTop: '6px', 
-                    marginBottom: '8px',
-                    color: '#FFF',
-                    fontFamily: 'PT Mono',
-                    fontSize: '16px',
-                    fontStyle: 'normal',
-                    fontWeight: 400,
-                    lineHeight: '27px',
-                    letterSpacing: '1.76px'
-                  }}>
-                    {selectedFood.description}
-                  </p>
+                <p className="text-right" style={{
+                  marginTop: '6px',
+                  marginBottom: '8px',
+                  color: '#FFF',
+                  fontFamily: 'PT Mono',
+                  fontSize: '16px',
+                  fontStyle: 'normal',
+                  fontWeight: 400,
+                  lineHeight: '27px',
+                  letterSpacing: '1.76px'
+                }}>
+                  {selectedFood.description}
+                </p>
               </div>
 
               {/* 4. Attributes Section */}
@@ -482,7 +482,7 @@ Ren's wisdom: "${aiResponse}"
                   <h2 className="text-[#FF3E3C] text-sm md:text-base font-semibold font-pt-mono text-right" style={{ marginTop: '6px', marginBottom: '8px' }}>
                     Attributes
                   </h2>
-                  
+
                   {/* Attributes Grid */}
                   <div style={{
                     width: '100%',
@@ -500,7 +500,7 @@ Ren's wisdom: "${aiResponse}"
           </div>
 
           {/* Fixed Action Buttons for Desktop */}
-          <div style={{ 
+          <div style={{
             position: 'fixed',
             bottom: '40px',
             right: '3vw',
@@ -526,6 +526,8 @@ Ren's wisdom: "${aiResponse}"
         onClose={closeModal}
         title={CONTENT.modals.breakYourCycle.title}
         content={CONTENT.modals.breakYourCycle.content}
+        buttonText={CONTENT.modals.breakYourCycle.buttonText}
+        buttonUrl={CONTENT.modals.breakYourCycle.buttonUrl}
       />
     </>
   );

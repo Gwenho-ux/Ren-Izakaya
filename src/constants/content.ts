@@ -37,8 +37,9 @@ Share if you dare. Some dishes belong in the spotlight. Some… should stay secr
     },
     breakYourCycle: {
       title: 'Break Your Cycle',
-      content: `Demo pop-up only:
-This page can redirect user to any destination, eg, ask people to join event, play games etc.`
+      content: `Thank you for trying my demo app, let's connect on LinkedIn and vibe code together!`,
+      buttonText: "Let's Vibe",
+      buttonUrl: "https://www.linkedin.com/in/gwen-h-a522b31a5/"
     }
   },
   wonders: {

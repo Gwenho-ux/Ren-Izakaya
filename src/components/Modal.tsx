@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSoundEffects } from '@/hooks/useSoundEffects';
+import { NeonButton } from './NeonButton';
 
 interface ModalProps {
   isOpen: boolean;
@@ -7,9 +8,11 @@ interface ModalProps {
   title: string;
   content: string;
   children?: React.ReactNode;
+  buttonText?: string;
+  buttonUrl?: string;
 }
 
-export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, content, children }) => {
+export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, content, children, buttonText, buttonUrl }) => {
   const { withSoundEffects } = useSoundEffects();
 
   useEffect(() => {
@@ -45,7 +48,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, content, c
   if (!isOpen) return null;
 
   return (
-    <div 
+    <div
       className="fixed z-[99999]"
       style={{
         top: 0,
@@ -56,7 +59,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, content, c
       }}
     >
       {/* Black Overlay Backdrop */}
-      <div 
+      <div
         style={{
           position: 'absolute',
           top: 0,
@@ -71,7 +74,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, content, c
       />
 
       {/* Modal Content - PERFECTLY CENTERED */}
-      <div 
+      <div
         className="absolute"
         style={{
           top: '50%',
@@ -112,7 +115,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, content, c
         </button>
 
         {/* Title with top spacing */}
-        <h2 
+        <h2
           className="text-center font-pt-mono font-bold"
           style={{
             color: 'red',
@@ -128,7 +131,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, content, c
         </h2>
 
         {/* Content */}
-        <div 
+        <div
           className="text-center font-pt-mono whitespace-pre-line overflow-y-auto"
           style={{
             color: '#FFF',
@@ -140,10 +143,26 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, content, c
             flex: 1,
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            flexDirection: 'column',
+            gap: '20px'
           }}
         >
-          {content}
+          <div>{content}</div>
+
+          {/* Optional Button */}
+          {buttonText && buttonUrl && (
+            <a
+              href={buttonUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: 'none' }}
+            >
+              <NeonButton {...withSoundEffects(() => { })}>
+                {buttonText}
+              </NeonButton>
+            </a>
+          )}
         </div>
 
         {/* Additional children content */}

@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 async function fetchWithTimeout(url: string, options: RequestInit, timeout = 10000): Promise<Response> {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), timeout);
-  
+
   try {
     const response = await fetch(url, {
       ...options,
@@ -21,7 +21,7 @@ async function fetchWithTimeout(url: string, options: RequestInit, timeout = 100
 export async function POST(request: Request) {
   try {
     const { question } = await request.json();
-    
+
     if (!question) {
       return NextResponse.json(
         { error: 'Question is required' },
@@ -34,13 +34,19 @@ export async function POST(request: Request) {
     // First, try to call the actual AI API
     try {
       const apiKey = process.env.XAI_API_KEY;
-      
+
+      console.log('Environment check:', {
+        hasApiKey: !!apiKey,
+        apiKeyLength: apiKey?.length || 0,
+        nodeEnv: process.env.NODE_ENV
+      });
+
       if (!apiKey) {
         throw new Error('XAI_API_KEY not found in environment variables');
       }
 
       console.log('Calling X.AI API...');
-      
+
       const response = await fetchWithTimeout('https://api.x.ai/v1/chat/completions', {
         method: 'POST',
         headers: {
@@ -94,7 +100,7 @@ Always use food metaphors. Stay under 20 words total.`
 
       const data = await response.json();
       const aiResponse = data.choices[0]?.message?.content;
-      
+
       if (!aiResponse) {
         throw new Error('No response content from X.AI API');
       }
@@ -104,14 +110,14 @@ Always use food metaphors. Stay under 20 words total.`
 
     } catch (error) {
       console.error('X.AI API failed, using fallback:', error);
-      
+
       // Fallback to 3 simple responses when API fails
       const fallbackResponses = [
         "The kitchen is too smoky today. I can't see clearly, but you're probably overthinking whatever mess you've made.",
         "My connection to the other realm is fuzzy right now. Whatever you're asking about, just stop being half-baked and take action.",
         "The spirits aren't speaking clearly today. But I'll tell you this - you already know what you need to do, so stop stalling."
       ];
-      
+
       const fallbackResponse = fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
       console.log('Using fallback response:', fallbackResponse);
       return NextResponse.json({ answer: fallbackResponse, source: 'fallback' });
