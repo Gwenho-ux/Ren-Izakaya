@@ -200,7 +200,7 @@ Always use food metaphors. Stay under 20 words total.`
       }, 15000); // 15 second timeout
 
       if (!response.ok) {
-        const errorText = await response.text();
+        await response.text();
         console.error('X.AI API Error:', response.status);
         throw new Error(`X.AI API Error: ${response.status}`);
       }
@@ -215,7 +215,7 @@ Always use food metaphors. Stay under 20 words total.`
       console.log('X.AI API response received successfully');
       return NextResponse.json({ answer: aiResponse, source: 'xai' });
 
-    } catch (error) {
+    } catch {
       console.error('X.AI API failed, using fallback');
 
       // Fallback to responses when API fails
