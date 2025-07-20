@@ -157,6 +157,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, content, c
               flexDirection: 'column',
               gap: '20px',
               minHeight: 0,
+              paddingBottom: 'max(20vh, env(safe-area-inset-bottom, 24px))',
             }}
           >
             <div>{content}</div>
@@ -173,9 +174,9 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, content, c
                 </NeonButton>
               </a>
             )}
+            {/* Additional children content (action buttons) */}
+            {children}
           </div>
-          {/* Additional children content */}
-          {children}
         </div>
       </div>
     </>
