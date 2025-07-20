@@ -55,7 +55,8 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, content, c
         left: 0,
         width: '100vw',
         height: '100vh',
-        pointerEvents: 'auto'
+        pointerEvents: 'auto',
+        overflowY: 'auto'
       }}
     >
       {/* Black Overlay Backdrop */}
@@ -73,27 +74,29 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, content, c
         onClick={onClose}
       />
 
-      {/* Modal Content - PERFECTLY CENTERED */}
+      {/* Modal Content - RESPONSIVE POSITIONING */}
       <div
         className="absolute"
         style={{
-          top: '50%',
+          // Desktop positioning (centered)
+          top: window.innerWidth > 768 ? '50%' : '20px',
           left: '50%',
-          transform: 'translate(-50%, -50%)',
+          transform: window.innerWidth > 768 ? 'translate(-50%, -50%)' : 'translateX(-50%)',
           display: 'flex',
           width: '734px',
-          height: '325px',
+          minHeight: '325px',
           maxWidth: '90vw',
-          maxHeight: '80vh',
+          maxHeight: window.innerWidth > 768 ? '90vh' : 'calc(100vh - 40px)',
           padding: '10px',
           flexDirection: 'column',
-          justifyContent: 'center',
+          justifyContent: 'flex-start',
           alignItems: 'center',
           gap: '10px',
           borderRadius: '5px',
           border: '1px solid #CF6261',
           background: 'linear-gradient(90deg, #000 0%, #331110 100%)',
-          zIndex: 2
+          zIndex: 2,
+          overflow: 'auto'
         }}
       >
         {/* Close Button - Top Right Corner */}
@@ -135,17 +138,18 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, content, c
           className="text-center font-pt-mono whitespace-pre-line overflow-y-auto"
           style={{
             color: '#FFF',
-            fontSize: '18px',
+            fontSize: window.innerWidth > 768 ? '18px' : '16px',
             fontWeight: 400,
-            lineHeight: '31px',
+            lineHeight: window.innerWidth > 768 ? '31px' : '24px',
             letterSpacing: '1.98px',
-            padding: '0 20px',
+            padding: window.innerWidth > 768 ? '0 20px' : '0 15px',
             flex: 1,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             flexDirection: 'column',
-            gap: '20px'
+            gap: '20px',
+            minHeight: 0
           }}
         >
           <div>{content}</div>
